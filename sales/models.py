@@ -52,6 +52,11 @@ class Sale(models.Model):
     
     def get_positions(self):
         return self.positions.all()
+    
+    #it does not work properly for our target. Will return all sales which someone Positions belong to a sale, then get the first.
+    def get_sales_id(self):
+        sale_obj = self.sale_set.first()# very important concept
+        return sale_obj.id
 
     def get_absolute_url(self):
         return reverse("sales:detail", kwargs={"pk": self.pk})
